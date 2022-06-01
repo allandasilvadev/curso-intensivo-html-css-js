@@ -32,12 +32,50 @@ let listNames = [
   }
 ];
 
-console.log( listNames );
+let dataJson = `
+  {
+  	"results": [
+  	  {
+  	    "id": 1,
+  	    "name": "Caio Duarte",
+  	    "age": 34,
+  	    "city": "Cajamar",
+  	    "country": "Brasil",
+  	    "picture": "https://randomuser.me/api/portraits/men/57.jpg",
+  	    "hobby": {
+  	  	  "first": "Jogos de Pc",
+  	  	  "second": "Escutar musica"
+  	    }
+  	  },
+  	  {
+  	    "id": 2,
+  	    "name": "Ricardo Alves",
+  	    "age": 23,
+  	    "city": "Roma",
+  	    "country": "Itália",
+  	    "picture": "https://randomuser.me/api/portraits/men/58.jpg",
+  	    "hobby": {
+  	  	  "first": "Assistir filmes",
+  	  	  "second": "Jogar futebol"
+  	    }
+  	  }
+  	]
+  }
+`;
+
+let response = JSON.parse(dataJson);
+
+console.log( response );
+
+let listResults = response.results;
+
+// console.log( listNames );
 
 function getData() {
 	result.innerHTML = '';
 
-	listNames.forEach(user => {
+	// listNames.forEach(user => {
+	listResults.forEach(user => {
 		const li = document.createElement('li');
 
 		listItens.push(li);
