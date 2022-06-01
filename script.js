@@ -76,7 +76,8 @@ let response = JSON.parse(dataJson);
 
 // console.log( response );
 
-let listResults = response.results;
+// let listResults = response.results;
+let listResults = [];
 
 // console.log( listNames );
 /*
@@ -119,18 +120,20 @@ async function getData() {
 
 	result.innerHTML = '';
 
-	listResults.forEach(user => {
+	results.forEach(user => {
 		const li = document.createElement('li');
 
 		listItens.push(li);
+
+		listResults.push(user);
 		
 		// li.innerHTML = `${user}`;
 		li.innerHTML = `
-		  <img src="${user.picture}" alt="${user.name}">
+		  <img src="${user.picture.large}" alt="${user.name.first}">
 		  <div class="user-info">		    
-		    <h4>${user.name}</h4>
-		    <p>${user.city} | ${user.country}</p>
-		    <p>${user.age} anos</p>
+		    <h4>${user.name.first} ${user.name.last}</h4>
+		    <p>${user.location.city} | ${user.location.country}</p>
+		    <p>${user.dob.age} anos</p>
 		  </div>
 		`;
 
@@ -154,15 +157,27 @@ function searchByCountry( country ) {
 	result.innerHTML = '';
 
 	listResults.forEach((user) => {
-		if ( user.country === country ) {
+		// if ( user.country === country ) {
+		if ( user.location.country === country ) {
 			const li = document.createElement('li');
 
+			/*
 			li.innerHTML = `
 			  <img src="${user.picture}" alt="${user.name}">
 			  <div class="user-info">		    
 			    <h4>${user.name}</h4>
 			    <p>${user.city} | ${user.country}</p>
 			    <p>${user.age} anos</p>
+			  </div>
+			`;
+			*/
+
+			li.innerHTML = `
+			  <img src="${user.picture.large}" alt="${user.name.first}">
+			  <div class="user-info">		    
+			    <h4>${user.name.first} ${user.name.last}</h4>
+			    <p>${user.location.city} | ${user.location.country}</p>
+			    <p>${user.dob.age} anos</p>
 			  </div>
 			`;
 
