@@ -1,9 +1,6 @@
 const result = document.getElementById('result');
 const filter = document.getElementById('filter');
-
-filter.addEventListener('input', (el) => {
-	filterData(el.target.value)
-});
+const select = document.getElementById('select');
 
 let listItens = [];
 
@@ -58,6 +55,18 @@ let dataJson = `
   	  	  "first": "Assistir filmes",
   	  	  "second": "Jogar futebol"
   	    }
+  	  },
+  	  {
+	  	  "id": 3,
+	  	  "name": "Sandro Alves",
+	  	  "age": 58,
+	  	  "city": "Lisboa",
+	  	  "country": "Portugal",
+	  	  "picture": "https://randomuser.me/api/portraits/men/59.jpg",
+	  	  "hobby": {
+	  		  "first": "Assistir filmes",
+	  		  "second": "Jogar futebol"
+	  	  }
   	  }
   	]
   }
@@ -104,4 +113,36 @@ function filterData( searchTerm ) {
   });
 }
 
+function searchByCountry( country ) {
+	// console.log( `O país selecionado foi ${country}.` );
+
+	result.innerHTML = '';
+
+	listResults.forEach((user) => {
+		if ( user.country === country ) {
+			const li = document.createElement('li');
+
+			li.innerHTML = `
+			  <img src="${user.picture}" alt="${user.name}">
+			  <div class="user-info">		    
+			    <h4>${user.name}</h4>
+			    <p>${user.city} | ${user.country}</p>
+			    <p>${user.age} anos</p>
+			  </div>
+			`;
+
+			result.appendChild(li);
+		}
+	});
+}
+
+
 document.getElementById('displayButton').addEventListener('click', getData, false);
+
+filter.addEventListener('input', (el) => {
+	filterData(el.target.value)
+});
+
+select.addEventListener('change', (el) => {
+	searchByCountry(el.target.value);
+});
