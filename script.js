@@ -74,16 +74,51 @@ let dataJson = `
 
 let response = JSON.parse(dataJson);
 
-console.log( response );
+// console.log( response );
 
 let listResults = response.results;
 
 // console.log( listNames );
-
+/*
 function getData() {
 	result.innerHTML = '';
 
 	// listNames.forEach(user => {
+	listResults.forEach(user => {
+		const li = document.createElement('li');
+
+		listItens.push(li);
+		
+		// li.innerHTML = `${user}`;
+		li.innerHTML = `
+		  <img src="${user.picture}" alt="${user.name}">
+		  <div class="user-info">		    
+		    <h4>${user.name}</h4>
+		    <p>${user.city} | ${user.country}</p>
+		    <p>${user.age} anos</p>
+		  </div>
+		`;
+
+		result.appendChild(li);
+	});
+}
+*/
+
+async function getData() {
+	let uri = 'https://randomuser.me/api/?results=30';
+	// retorna uma promise
+	const res = await fetch(uri);
+
+	// console.log(res.status);
+	// retorna uma promise
+	// let data = await res.json();
+	// console.log(data.results);
+
+	const { results } = await res.json();
+	console.log( results );
+
+	result.innerHTML = '';
+
 	listResults.forEach(user => {
 		const li = document.createElement('li');
 
