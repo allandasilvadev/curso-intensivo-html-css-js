@@ -1,4 +1,11 @@
 const result = document.getElementById('result');
+const filter = document.getElementById('filter');
+
+filter.addEventListener('input', (el) => {
+	filterData(el.target.value)
+});
+
+let listItens = [];
 
 // let listNames = ['Ana Santos', 'Dalva Duarte', 'Nayra Louise', 'Fernando Pontes'];
 let listNames = [
@@ -32,6 +39,8 @@ function getData() {
 
 	listNames.forEach(user => {
 		const li = document.createElement('li');
+
+		listItens.push(li);
 		
 		// li.innerHTML = `${user}`;
 		li.innerHTML = `
@@ -45,6 +54,16 @@ function getData() {
 
 		result.appendChild(li);
 	});
+}
+
+function filterData( searchTerm ) {
+  listItens.forEach((item) => {
+  	if(item.innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+  		item.classList.remove('hide');
+  	} else {
+  		item.classList.add('hide');     
+  	}
+  });
 }
 
 document.getElementById('displayButton').addEventListener('click', getData, false);
