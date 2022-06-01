@@ -46,3 +46,31 @@
 .user-list li.hide {
 	display: none;
 }
+
+.header {
+	background-color: #3e57db;
+	color:  #fff;
+	padding: 30px 20px;
+}
+
+.header input, select {
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 0;
+	border-radius: 50px;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 15px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.title {
+	margin: 0;
+}
+
+.subtitle {
+	display: inline-block;
+	margin: 5px 0 20px;
+	opacity: 0.8;
+}
